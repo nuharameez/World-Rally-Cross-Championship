@@ -10,22 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+
 public class Menu {
     public Menu(){
 
     }
-
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private Button updateButton;
-
-    @FXML
-    private Label title;
 
     @FXML
     protected void onAddButtonClick(ActionEvent actionEvent) throws Exception {

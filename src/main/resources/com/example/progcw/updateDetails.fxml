@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.Menu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.Update">
    <children>
-      <Label layoutX="103.0" layoutY="155.0" text="Update Page Successfull!!!">
+      <Button layoutX="467.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateSave" text="Update" />
+      <Label alignment="CENTER" layoutX="134.0" layoutY="33.0" text="Update driver details" textFill="#21288e">
          <font>
-            <Font size="36.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="272.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Go Back" />
+      <Label layoutX="37.0" layoutY="147.0" text="Enter name of driver to update details:" textFill="#615b96">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateName" layoutX="341.0" layoutY="145.0" prefHeight="26.0" prefWidth="182.0" />
+      <Label layoutX="37.0" layoutY="189.0" text="What would you like to update?" textFill="#615b96">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="232.0" text="Enter new record:" textFill="#615b96">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateRecord" layoutX="340.0" layoutY="230.0" prefHeight="26.0" prefWidth="182.0" />
+      <Button layoutX="532.0" layoutY="342.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Back" />
+      <Label fx:id="message" alignment="CENTER" layoutX="3.0" layoutY="266.0" prefHeight="62.0" prefWidth="594.0" textFill="#007b0c" />
+      <ChoiceBox fx:id="updateElem" layoutX="340.0" layoutY="187.0" prefHeight="26.0" prefWidth="182.0" />
+      <Label fx:id="message" alignment="CENTER" layoutX="2.0" layoutY="266.0" prefHeight="62.0" prefWidth="594.0" textFill="#007b0c" />
+      <Label fx:id="messageError" alignment="CENTER" layoutX="3.0" layoutY="266.0" prefHeight="62.0" prefWidth="594.0" textFill="#c10202" />
    </children>
 </AnchorPane>
