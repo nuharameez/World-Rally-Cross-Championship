@@ -61,7 +61,7 @@ public class Delete {
                 }
                 else{
                     message.setText("");
-                    messageError.setText(delName + "- driver's records do not exist in the system. Click back to go to main menu");
+                    messageError.setText(delName + "- driver's records does not exist or has been removed from the system. Click back to go to main menu");
                 }
 
             }

@@ -2,19 +2,38 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.Standings">
    <children>
-      <Label fx:id="Heading" layoutX="140.0" layoutY="27.0" prefHeight="66.0" prefWidth="318.0" text="Standing Table Page!!">
+      <Label fx:id="Heading" layoutX="140.0" layoutY="27.0" prefHeight="66.0" prefWidth="318.0">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
       <Button layoutX="526.0" layoutY="348.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Go Back" />
-      <Button layoutX="420.0" layoutY="348.0" mnemonicParsing="false" onAction="#showStanding" text="show" />
-      <TextArea fx:id="record" layoutX="47.0" layoutY="111.0" prefHeight="200.0" prefWidth="515.0" />
+      <Button layoutX="476.0" layoutY="348.0" mnemonicParsing="false" onAction="#showStanding" prefHeight="26.0" prefWidth="44.0" text="show" />
+      <TableView fx:id="standingTable" layoutX="30.0" layoutY="93.0" prefHeight="234.0" prefWidth="538.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="139.20001220703125" text="Name" />
+          <TableColumn fx:id="age" prefWidth="52.79998779296875" text="Age" />
+            <TableColumn fx:id="team" prefWidth="151.20001220703125" text="Team" />
+            <TableColumn fx:id="car" prefWidth="119.20001220703125" text="Car" />
+            <TableColumn fx:id="points" prefWidth="75.199951171875" text="Points" />
+        </columns>
+      </TableView>
+      <Label layoutX="123.0" layoutY="27.0" text="Drivers Standing Table" textFill="#21288e">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="282.0" layoutY="351.0" prefHeight="18.0" prefWidth="182.0" text="Please click here to view the table" textFill="#1d7fcf">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

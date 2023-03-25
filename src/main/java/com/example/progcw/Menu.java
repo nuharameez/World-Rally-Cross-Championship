@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import static com.example.progcw.DriverList.allDrivers;
+
 
 public class Menu {
     public Menu(){
@@ -80,6 +82,7 @@ public class Menu {
     @FXML
     protected void onStandingTableButtonClick(ActionEvent actionEvent) throws Exception {
         navigateStandingTable(actionEvent);
+
     }
 
     public void navigateStandingTable(ActionEvent actionEvent) throws Exception  {
@@ -87,6 +90,7 @@ public class Menu {
         Parent root = FXMLLoader.load(getClass().getResource("standingTable.fxml"));
         newStage.setScene(new Scene(root,600,400 ));
         newStage.show();
+
 
         Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
