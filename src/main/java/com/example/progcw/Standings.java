@@ -50,7 +50,7 @@ public class Standings {
 
 
     public void showStanding() throws IOException {
-        displayTable(allDrivers);
+        displayTable(DriverList.allDrivers);
     }
 
     @FXML
@@ -72,8 +72,8 @@ public class Standings {
         int n = sortList.size();
         for (int i = 0; i<n; i++){
             for ( int j = 0; j< n - i - 1; j++){
-                int current = (int) sortList.get(j).get(4);
-                int next= (int) sortList.get(j+1).get(4);
+                int current = Integer.parseInt(sortList.get(j).get(4).toString()) ;
+                int next= Integer.parseInt(sortList.get(j+1).get(4).toString());
                 if(current<next){
                     ArrayList temp = sortList.get(j);
                     sortList.set(j, sortList.get(j+1));

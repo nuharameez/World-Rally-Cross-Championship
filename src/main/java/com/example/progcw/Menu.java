@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -200,12 +202,15 @@ public class Menu {
         previousStage.close();
     }*/
 
+
     @FXML
     protected void onLoadButtonClick(ActionEvent actionEvent) throws Exception {
-        navigateLoadData(actionEvent);
+        //navigateLoadData(actionEvent);
+        Load load = new Load();
+        }
     }
 
-    public void navigateLoadData(ActionEvent actionEvent) throws Exception  {
+    /*public void navigateLoadData(ActionEvent actionEvent) throws Exception  {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("loadData.fxml"));
         newStage.setScene(new Scene(root,600,400 ));
@@ -213,5 +218,5 @@ public class Menu {
 
         Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
-    }
-}
+    }*/
+
