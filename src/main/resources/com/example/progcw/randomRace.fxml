@@ -2,17 +2,47 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.Menu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.RandomRace">
    <children>
-      <Label layoutX="168.0" layoutY="110.0" text="Random Race Page">
+      <Button layoutX="522.0" layoutY="360.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Back" />
+      <Label alignment="CENTER" layoutX="207.0" layoutY="14.0" text="Race Details" textFill="#21288e">
          <font>
-            <Font size="31.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="258.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Go Back" />
+      <TextArea fx:id="date" layoutX="142.0" layoutY="118.0" prefHeight="26.0" prefWidth="139.0">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
+      <Label layoutX="30.0" layoutY="130.0" text="Date of Race:" textFill="#615b96">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="343.0" layoutY="130.0" text="Location:" textFill="#615b96">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="race" layoutX="30.0" layoutY="182.0" prefHeight="170.0" prefWidth="542.0">
+        <columns>
+          <TableColumn fx:id="position" prefWidth="68.800048828125" text="Position" />
+          <TableColumn fx:id="name" prefWidth="393.5999755859375" text="Driver Name" />
+            <TableColumn fx:id="points" text="Points" />
+        </columns>
+      </TableView>
+      <Button layoutX="368.0" layoutY="360.0" mnemonicParsing="false" onAction="#showRace" text="Click here to view table" />
+      <Label layoutX="212.0" layoutY="159.0" prefHeight="18.0" prefWidth="182.0" />
+      <TextArea fx:id="locationL" layoutX="425.0" layoutY="117.0" prefHeight="46.0" prefWidth="151.0">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
+      <Label fx:id="raceError" alignment="CENTER" layoutX="149.0" layoutY="79.0" prefHeight="18.0" prefWidth="319.0" textFill="#bf0000" />
    </children>
 </AnchorPane>

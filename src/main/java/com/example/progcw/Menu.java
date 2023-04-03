@@ -106,11 +106,14 @@ public class Menu {
 
     @FXML
     protected void onRandomRaceButtonClick(ActionEvent actionEvent) throws Exception {
-        //navigateRandomRace(actionEvent);
-       RandomRace randomRace = new RandomRace();
+        //RandomRace randomRace = new RandomRace();
+        navigateRandomRace(actionEvent);
+        List<List<String>> raceData = new ArrayList<>();
+
+
     }
 
-    /*public void navigateRandomRace(ActionEvent actionEvent) throws Exception  {
+    public void navigateRandomRace(ActionEvent actionEvent) throws Exception  {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("randomRace.fxml"));
         newStage.setScene(new Scene(root,600,400 ));
@@ -118,7 +121,7 @@ public class Menu {
 
         Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
-    }*/
+    }
 
     @FXML
     protected void onRaceTableButtonClick(ActionEvent actionEvent) throws Exception {
@@ -166,9 +169,9 @@ public class Menu {
                     }
                     writer.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("File does not exist");
                 }
-                System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
 
             }
         }
@@ -176,15 +179,17 @@ public class Menu {
             for (int i = 0; i < DriverList.allDrivers.size(); i++) {
                 data.add(Arrays.asList(String.valueOf(DriverList.allDrivers.get(i))));
                 try {
-                    FileWriter writer = new FileWriter("SavedDriverDetails.txt", true); //ask user if they called stf or rff in the program, if yes get rid of the true.
+                    FileWriter writer = new FileWriter("SavedDriverDetails.txt", true); //true appends the details. does not over write.
                     for (List<String> line : data) {
                         writer.write(String.join(",", line) + "\n");
+
                     }
+                    data.clear();
                     writer.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("File does not exist");
                 }
-                System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
 
             }
         }
