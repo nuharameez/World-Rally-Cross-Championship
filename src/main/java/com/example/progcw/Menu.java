@@ -15,10 +15,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.example.progcw.DriverList.allDrivers;
 
@@ -109,10 +106,11 @@ public class Menu {
 
     @FXML
     protected void onRandomRaceButtonClick(ActionEvent actionEvent) throws Exception {
-        navigateRandomRace(actionEvent);
+        //navigateRandomRace(actionEvent);
+       RandomRace randomRace = new RandomRace();
     }
 
-    public void navigateRandomRace(ActionEvent actionEvent) throws Exception  {
+    /*public void navigateRandomRace(ActionEvent actionEvent) throws Exception  {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("randomRace.fxml"));
         newStage.setScene(new Scene(root,600,400 ));
@@ -120,7 +118,7 @@ public class Menu {
 
         Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
-    }
+    }*/
 
     @FXML
     protected void onRaceTableButtonClick(ActionEvent actionEvent) throws Exception {
@@ -178,7 +176,7 @@ public class Menu {
             for (int i = 0; i < DriverList.allDrivers.size(); i++) {
                 data.add(Arrays.asList(String.valueOf(DriverList.allDrivers.get(i))));
                 try {
-                    FileWriter writer = new FileWriter("SavedDriverDetails", true); //ask user if they called stf or rff in the program, if yes get rid of the true.
+                    FileWriter writer = new FileWriter("SavedDriverDetails.txt", true); //ask user if they called stf or rff in the program, if yes get rid of the true.
                     for (List<String> line : data) {
                         writer.write(String.join(",", line) + "\n");
                     }

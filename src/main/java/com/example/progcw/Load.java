@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class Load {
     public Load() throws IOException {
-        String filename = "data.txt";
+        String filename = "SavedDriverDetails.txt";
         ArrayList<ArrayList<String>> driverDetails = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -42,16 +42,16 @@ public class Load {
                 driverRecord.set(4, driverRecord.get(4).replaceAll("^\\[|\\]$",""));
                 driverRecord.set(1, String.valueOf(Integer.parseInt(driverRecord.get(1))));
                 driverRecord.set(4, String.valueOf(Integer.parseInt(driverRecord.get(4))));
-                System.out.println(driverRecord);
                 DriverList.allDrivers.add(driverRecord);
-                System.out.println(DriverList.allDrivers);
+
 
             }
+            System.out.println(DriverList.allDrivers);
 
         }
     }
 
-    public class DriverDetails {
+    /*public class DriverDetails {
         private String name;
         private int age;
         private String team;
@@ -69,7 +69,7 @@ public class Load {
             return name +","+ age+"," + team+"," + car+"," + points;
         }
 
-    }
+    }*/
     @FXML
     protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
