@@ -125,7 +125,8 @@ public class Menu {
 
     @FXML
     protected void onRaceTableButtonClick(ActionEvent actionEvent) throws Exception {
-        navigateRaceTable(actionEvent);
+        //navigateRaceTable(actionEvent);
+        RaceTable raceTable = new RaceTable();
     }
 
     public void navigateRaceTable(ActionEvent actionEvent) throws Exception  {

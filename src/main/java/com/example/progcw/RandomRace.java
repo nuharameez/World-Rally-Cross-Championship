@@ -65,13 +65,15 @@ public class RandomRace {
         for (int i = 0; i < DriverList.allDrivers.size(); i++) {
             raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(0)));
             raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(4)));
+
             try {
                 FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
+
                 for (String line : raceData) {
-                    writer.write(String.join(",", line));
+                    writer.write(String.join(",", line,"\n"));
                 }
-                writer.write("\n");
                 raceData.clear();
+                //writer.write("\n");
                 writer.close();
             } catch (IOException e) {
                 System.out.println("File does not exist");
@@ -158,7 +160,7 @@ public class RandomRace {
             date.setText(formattedDate);
 
             try {
-                FileWriter writer = new FileWriter("raceDate.txt", true); //true appends the details. does not over write.
+                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
                 writer.write(formattedDate + "\n");
                 writer.close();
             } catch (IOException e) {
@@ -178,7 +180,7 @@ public class RandomRace {
             String randomLocation = locations[rand.nextInt(locations.length)];
             locationL.setText(randomLocation);
             try {
-                FileWriter writer = new FileWriter("raceLocation.txt", true); //true appends the details. does not over write.
+                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
                 writer.write(randomLocation + "\n");
                 writer.close();
             } catch (IOException e) {
