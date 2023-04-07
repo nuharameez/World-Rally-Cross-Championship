@@ -13,7 +13,7 @@
             <Font name="Berlin Sans FB Demi Bold" size="35.0" />
          </font>
       </Label>
-      <Button fx:id="save" layoutX="417.0" layoutY="338.0" mnemonicParsing="false" onAction="#addSave" text="Save &amp; Continue" />
+      <Button fx:id="save" layoutX="225.0" layoutY="337.0" mnemonicParsing="false" onAction="#addSave" prefHeight="26.0" prefWidth="150.0" text="Save" />
       <Label layoutX="162.0" layoutY="138.0" text="Name:" textFill="#615b96">
          <font>
             <Font name="Bodoni MT" size="18.0" />
@@ -44,11 +44,14 @@
       <TextField fx:id="addTeam" layoutX="290.0" layoutY="212.0" />
       <TextField fx:id="addCar" layoutX="290.0" layoutY="248.0" />
       <TextField fx:id="addPoints" layoutX="290.0" layoutY="290.0" />
-      <Label alignment="CENTER" layoutX="203.0" layoutY="97.0" prefHeight="22.0" prefWidth="174.0" text="Enter driver details" textFill="#1d7fcf">
+      <Label alignment="CENTER" layoutX="203.0" layoutY="81.0" prefHeight="22.0" prefWidth="174.0" text="Enter driver details" textFill="#1d7fcf">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="on" layoutX="529.0" layoutY="338.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="26.0" prefWidth="48.0" text="Back" />
+      <Button fx:id="on" layoutX="526.0" layoutY="337.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="26.0" prefWidth="48.0" text="Back" />
+      <Button layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="26.0" prefWidth="57.0" text="Clear" />
+      <Label fx:id="errorMessage" alignment="CENTER" layoutX="165.0" layoutY="111.0" prefHeight="18.0" prefWidth="274.0" textAlignment="CENTER" textFill="#df1010" />
+      <Label fx:id="successMessage" alignment="CENTER" layoutX="162.0" layoutY="111.0" prefHeight="18.0" prefWidth="274.0" textAlignment="CENTER" textFill="#1f630a" />
    </children>
 </AnchorPane>

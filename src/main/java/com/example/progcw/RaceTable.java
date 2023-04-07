@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +33,8 @@ public class RaceTable {
     private TableColumn<RaceDetails, String> drivers;
     @FXML
     private TableView<RaceDetails> raceTable;
+    @FXML
+    private Label message;
 
     public void raceTableShow(){
         displayRaceTable();
@@ -196,12 +199,18 @@ public class RaceTable {
         }
         System.out.println(modifiedList);
         if(!modifiedList.isEmpty()){
+            message.setText("");
             ObservableList<RaceDetails> data = FXCollections.observableArrayList();
             for(List<String> details : modifiedList){
                 String date =  details.get(2);
                 String location =  details.get(1);
                 String driverElem = details.get(0);
-                String[] elem = driverElem.split("\\s+");
+                String[] elem = driverElem.split("(?<=\\d)\\s+(?=[A-Za-z])");
+                //(?<=\\d): when there is a white space before a digit
+                //(\\s): one or more white spaces
+                //(?=[A-Za-z]): white space before a letter
+                //this splits the string before a letter after a digit.
+
                 if(elem.length >= 3) {
                     elem[0] = "First: " + elem[0];
                     elem[1] = "Second: " + elem[1];
@@ -222,6 +231,9 @@ public class RaceTable {
             raceLocation.setCellValueFactory(new PropertyValueFactory<RaceDetails, String>("location"));
             drivers.setCellValueFactory(new PropertyValueFactory<RaceDetails, String>("drivers"));
             raceTable.setItems(data);
+        }
+        else{
+            message.setText("No races have taken place.");
         }
     }
 

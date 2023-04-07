@@ -23,5 +23,10 @@
             <Font name="Berlin Sans FB Demi Bold" size="35.0" />
          </font>
       </Label>
+      <Label fx:id="message" layoutX="54.0" layoutY="363.0" prefHeight="20.0" prefWidth="170.0" textFill="#bf1717">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
