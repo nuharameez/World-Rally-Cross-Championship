@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.Menu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.RaceTable">
    <children>
       <Button layoutX="526.0" layoutY="360.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Go Back" />
-      <TableView layoutX="54.0" layoutY="79.0" prefHeight="265.0" prefWidth="494.0">
+      <TableView fx:id="raceTable" layoutX="54.0" layoutY="79.0" prefHeight="265.0" prefWidth="494.0">
         <columns>
           <TableColumn fx:id="date" prefWidth="82.4000244140625" text="Date" />
-          <TableColumn fx:id="location" prefWidth="92.79998779296875" text="Location" />
+          <TableColumn fx:id="raceLocation" prefWidth="92.79998779296875" text="Location" />
             <TableColumn fx:id="drivers" minWidth="0.0" prefWidth="318.4000244140625" text="Drivers" />
         </columns>
       </TableView>
