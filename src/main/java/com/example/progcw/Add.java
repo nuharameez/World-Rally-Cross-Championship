@@ -62,6 +62,7 @@ public class Add {
         Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
+
     @FXML
     protected void onClearClick(ActionEvent actionEvent) throws Exception {
         navigateClear(actionEvent);
@@ -96,57 +97,76 @@ public class Add {
             }
 
 
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("No file");
         }
         ArrayList drivers = new ArrayList();
+
         String name = addName.getText().toUpperCase();
         drivers.add(name);
-        try {
-            int age = Integer.parseInt(addAge.getText());
-            drivers.add(age);
+        while (true) {
+            try {
+                int age = Integer.parseInt(addAge.getText());
+                drivers.add(age);
+                break;
+
+            } catch (NumberFormatException e) {
+                successMessage.setText("");
+                errorMessage.setText("Invalid Input! Check age and points.");
+                drivers.clear();
+                break;
+            }
         }
-        catch(NumberFormatException e){
-            drivers.clear();
-            errorMessage.setText("Invalid Input!");
-        }
+
+
         String team = addTeam.getText().toUpperCase();
         drivers.add(team);
         String car = addCar.getText().toUpperCase();
         drivers.add(car);
-        int points = Integer.parseInt(addPoints.getText());
-        drivers.add(points);
+        while (true) {
+            try {
+                int points = Integer.parseInt(addPoints.getText());
+                drivers.add(points);
+                break;
+            } catch (NumberFormatException e) {
+                successMessage.setText("");
+                errorMessage.setText("Invalid Input! Check age and points.");
+                drivers.clear();
+                break;
+            }
+        }
 
 
-        /*ArrayList drivers = new ArrayList();
-        drivers.add(name);
-        drivers.add(age);
-        drivers.add(team);
-        drivers.add(car);
-        drivers.add(points);*/
+
+            for (int i = 0; i < DriverList.allDrivers.size(); i++) {
+                    if (DriverList.allDrivers.get(i).contains(name)) {
+                        //System.out.println("Name exists");
+                        successMessage.setText("");
+                        errorMessage.setText("This driver already exists in the system");
+                        drivers.clear();
+                    }
+                }
 
 
-        for (int i = 0; i < DriverList.allDrivers.size(); i++) {
             for (int j = 0; j < driverDetails.size(); j++) {
-                if (DriverList.allDrivers.get(i).get(0).equals(drivers.get(0)) || driverDetails.get(j).get(0).equals(drivers.get(0))) {
+                if (driverDetails.get(j).get(0).equals(name) ) {
                     //System.out.println("Name exists");
                     successMessage.setText("");
                     errorMessage.setText("This driver already exists in the system");
                     drivers.clear();
-                    break;
+
                 }
             }
 
-        }
-        if (!drivers.isEmpty()) {
-            errorMessage.setText("");
-            DriverList.allDrivers.add(drivers);
-            successMessage.setText("Driver details added successfully!");
-        }
 
-        /*System.out.println(AddList.drivers);*/
-        System.out.println( DriverList.allDrivers);
+            if (!drivers.isEmpty()) {
+                errorMessage.setText("");
+                DriverList.allDrivers.add(drivers);
+                successMessage.setText("Driver details added successfully!");
+            }
+
+            /*System.out.println(AddList.drivers);*/
+            System.out.println(DriverList.allDrivers);
 
         /*Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
@@ -158,7 +178,11 @@ public class Add {
     }*/
 
 
+
     }
 }
+
+
+
 
 

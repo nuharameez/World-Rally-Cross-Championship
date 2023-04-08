@@ -22,11 +22,14 @@
       <TextField fx:id="deleteName" layoutX="325.0" layoutY="158.0" />
       <Label alignment="CENTER" layoutX="118.0" layoutY="209.0" prefWidth="364.0" text="Note: Details of the driver can not be recovered once deleted. " textFill="#1d7fcf">
          <font>
-            <Font name="Bell MT" size="13.0" />
+            <Font name="Bell MT" size="14.0" />
          </font>
       </Label>
       <Button layoutX="524.0" layoutY="339.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="26.0" prefWidth="50.0" text="Back" />
-      <Label fx:id="message" alignment="CENTER" layoutX="4.0" layoutY="262.0" prefHeight="51.0" prefWidth="594.0" />
+      <Label fx:id="message" alignment="CENTER" layoutX="4.0" layoutY="262.0" prefHeight="51.0" prefWidth="594.0" textFill="#0e892f">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
       <Label fx:id="messageError" alignment="CENTER" layoutX="4.0" layoutY="244.0" prefHeight="51.0" prefWidth="594.0" textFill="#c10202" />
    </children>
 </AnchorPane>

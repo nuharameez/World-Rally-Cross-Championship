@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Delete {
     public Delete() {
@@ -43,31 +44,35 @@ public class Delete {
     }
 
     public void deleteDriverDetails() throws IOException {
+        ArrayList<ArrayList> toDelete = new ArrayList<ArrayList>();
         String delName = deleteName.getText().toUpperCase();
-
-        if (DriverList.allDrivers.isEmpty()){
-            message.setText("");
-            messageError.setText("There are no drivers entered/loaded in to the system. Click on back to go to main menu");
-
-
+        for(int i = 0; i<DriverList.allDrivers.size();i++){
+            if (DriverList.allDrivers.isEmpty() || !(DriverList.allDrivers.get(i).contains(delName))) {
+                message.setText("");
+                messageError.setText("There are no drivers loaded in to the system.");
+            }
+            else{
+                toDelete.add(DriverList.allDrivers.get(i));
+                DriverList.allDrivers.remove(DriverList.allDrivers.get(i));
+            }
         }
-        else {
-            for (int i = 0; i < DriverList.allDrivers.size(); i++) {
-                if (DriverList.allDrivers.get(i).contains(delName)) {
-                    DriverList.allDrivers.remove(i);
+        if(!toDelete.isEmpty()){
+                if (toDelete.get(0).contains(delName)) {
+                    toDelete.clear();
                     System.out.println(DriverList.allDrivers);
                     messageError.setText("");
-                    message.setText(delName + "- driver's records has been deleted. Click on back to go to main menu");
+                    message.setText(delName + "- driver's records has been deleted.");
                 }
-                else{
-                    message.setText("");
-                    messageError.setText(delName + "- driver's records does not exist or has been removed from the system. Click back to go to main menu");
-                }
+
 
             }
-
-
+        else{
+            message.setText("");
+            messageError.setText(delName + "- driver's records does not exist or has been removed from the system.");
         }
+
+
+
 
 
 
