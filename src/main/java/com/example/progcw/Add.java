@@ -100,15 +100,17 @@ public class Add {
         } catch (IOException e) {
             System.out.println("No file");
         }
-        ArrayList drivers = new ArrayList();
-
-        String name = addName.getText().toUpperCase();
-        drivers.add(name);
         while (true) {
+            ArrayList drivers = new ArrayList();
+
+            String name = addName.getText().toUpperCase();
+            drivers.add(name);
+
+
             try {
                 int age = Integer.parseInt(addAge.getText());
                 drivers.add(age);
-                break;
+
 
             } catch (NumberFormatException e) {
                 successMessage.setText("");
@@ -116,40 +118,37 @@ public class Add {
                 drivers.clear();
                 break;
             }
-        }
 
 
-        String team = addTeam.getText().toUpperCase();
-        drivers.add(team);
-        String car = addCar.getText().toUpperCase();
-        drivers.add(car);
-        while (true) {
+            String team = addTeam.getText().toUpperCase();
+            drivers.add(team);
+            String car = addCar.getText().toUpperCase();
+            drivers.add(car);
+
             try {
                 int points = Integer.parseInt(addPoints.getText());
                 drivers.add(points);
-                break;
+
             } catch (NumberFormatException e) {
                 successMessage.setText("");
                 errorMessage.setText("Invalid Input! Check age and points.");
                 drivers.clear();
                 break;
             }
-        }
-
 
 
             for (int i = 0; i < DriverList.allDrivers.size(); i++) {
-                    if (DriverList.allDrivers.get(i).contains(name)) {
-                        //System.out.println("Name exists");
-                        successMessage.setText("");
-                        errorMessage.setText("This driver already exists in the system");
-                        drivers.clear();
-                    }
+                if (DriverList.allDrivers.get(i).contains(name)) {
+                    //System.out.println("Name exists");
+                    successMessage.setText("");
+                    errorMessage.setText("This driver already exists in the system");
+                    drivers.clear();
                 }
+            }
 
 
             for (int j = 0; j < driverDetails.size(); j++) {
-                if (driverDetails.get(j).get(0).equals(name) ) {
+                if (driverDetails.get(j).get(0).equals(name)) {
                     //System.out.println("Name exists");
                     successMessage.setText("");
                     errorMessage.setText("This driver already exists in the system");
@@ -176,9 +175,8 @@ public class Add {
         Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }*/
-
-
-
+            break;
+        }
     }
 }
 
