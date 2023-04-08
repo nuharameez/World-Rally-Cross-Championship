@@ -42,11 +42,11 @@ public class Update {
     }
 
     @FXML
-    protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
+    private void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
+    private void navigateGoBack(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         newStage.setScene(new Scene(root, 600, 400));
@@ -56,7 +56,7 @@ public class Update {
         previousStage.close();
     }
 
-    public void updateDriverDetails() throws IOException {
+    private void updateDriverDetails() throws IOException {
         ArrayList<ArrayList> toUpdate = new ArrayList();
         String updateE = (String) updateElem.getValue();
         String name = updateName.getText().toUpperCase();

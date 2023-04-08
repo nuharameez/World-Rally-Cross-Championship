@@ -29,11 +29,11 @@ public class Delete {
     }
 
     @FXML
-    protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
+    private void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
+    private void navigateGoBack(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         newStage.setScene(new Scene(root, 600, 400));
@@ -43,7 +43,7 @@ public class Delete {
         previousStage.close();
     }
 
-    public void deleteDriverDetails() throws IOException {
+    private void deleteDriverDetails() throws IOException {
         ArrayList<ArrayList> toDelete = new ArrayList<ArrayList>();
         String delName = deleteName.getText().toUpperCase();
         for(int i = 0; i<DriverList.allDrivers.size();i++){
