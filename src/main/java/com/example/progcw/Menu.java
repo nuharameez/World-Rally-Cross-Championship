@@ -21,6 +21,8 @@ import static com.example.progcw.DriverList.allDrivers;
 
 
 public class Menu {
+    @FXML
+    private Label fileMessage;
     public Menu(){
 
     }
@@ -147,7 +149,7 @@ public class Menu {
 
 
     @FXML
-    protected void onSaveButtonClick(ActionEvent actionEvent) throws Exception {
+    protected void onSaveButtonClick() {
         //navigateSaveData(actionEvent);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -194,6 +196,7 @@ public class Menu {
 
             }
         }
+        fileMessage.setText("Data saved to text file.");
     }
 
     /*public void navigateSaveData(ActionEvent actionEvent) throws Exception  {
@@ -211,6 +214,7 @@ public class Menu {
     protected void onLoadButtonClick(ActionEvent actionEvent) throws Exception {
         //navigateLoadData(actionEvent);
         Load load = new Load();
+        fileMessage.setText("Data Loaded in to the system");
         }
     }
 

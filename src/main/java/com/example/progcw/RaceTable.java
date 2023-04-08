@@ -197,7 +197,7 @@ public class RaceTable {
 
 
         }
-        System.out.println(modifiedList);
+ 
         if(!modifiedList.isEmpty()){
             message.setText("");
             ObservableList<RaceDetails> data = FXCollections.observableArrayList();

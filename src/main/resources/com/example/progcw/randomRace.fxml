@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progcw.RandomRace">
    <children>
-      <Button layoutX="522.0" layoutY="360.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Back" />
+      <Button layoutX="535.0" layoutY="360.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" text="Back" />
       <Label alignment="CENTER" layoutX="207.0" layoutY="14.0" text="Race Details" textFill="#21288e">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="35.0" />
@@ -37,7 +37,7 @@
             <TableColumn fx:id="points" text="Points" />
         </columns>
       </TableView>
-      <Button layoutX="368.0" layoutY="360.0" mnemonicParsing="false" onAction="#showRace" text="Click here to view table" />
+      <Button layoutX="368.0" layoutY="360.0" mnemonicParsing="false" onAction="#showRace" text="Click here to generate race" />
       <Label layoutX="212.0" layoutY="159.0" prefHeight="18.0" prefWidth="182.0" />
       <TextArea fx:id="locationL" layoutX="425.0" layoutY="117.0" prefHeight="46.0" prefWidth="151.0">
          <font>
