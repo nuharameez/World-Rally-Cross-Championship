@@ -1,5 +1,6 @@
 package com.example.progcw;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +24,8 @@ import static com.example.progcw.DriverList.allDrivers;
 public class Menu {
     @FXML
     private Label fileMessage;
-    public Menu(){
+
+    public Menu() {
 
     }
 
@@ -33,13 +35,13 @@ public class Menu {
         navigateAdd(actionEvent);
     }
 
-    public void navigateAdd(ActionEvent actionEvent) throws Exception  {
+    public void navigateAdd(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("addDetails.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -48,13 +50,13 @@ public class Menu {
         navigateDelete(actionEvent);
     }
 
-    public void navigateDelete(ActionEvent actionEvent) throws Exception  {
+    public void navigateDelete(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("deleteDetails.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -64,13 +66,13 @@ public class Menu {
         navigateUpdate(actionEvent);
     }
 
-    public void navigateUpdate(ActionEvent actionEvent) throws Exception  {
+    public void navigateUpdate(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("updateDetails.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -79,13 +81,13 @@ public class Menu {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception  {
+    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -95,14 +97,14 @@ public class Menu {
 
     }
 
-    public void navigateStandingTable(ActionEvent actionEvent) throws Exception  {
+    public void navigateStandingTable(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("standingTable.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -115,13 +117,13 @@ public class Menu {
 
     }
 
-    public void navigateRandomRace(ActionEvent actionEvent) throws Exception  {
+    public void navigateRandomRace(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("randomRace.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
@@ -131,26 +133,20 @@ public class Menu {
         //RaceTable raceTable = new RaceTable();
     }
 
-    public void navigateRaceTable(ActionEvent actionEvent) throws Exception  {
+    public void navigateRaceTable(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("raceTable.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
+        newStage.setScene(new Scene(root, 600, 400));
         newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage previousStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         previousStage.close();
     }
 
 
-
-
-
-
-
-
     @FXML
-    protected void onSaveButtonClick() {
-        //navigateSaveData(actionEvent);
+    private void onSaveButtonClick() {
+        //creating alert box to ask user if data has been saved of loaded prior to this.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Did you save or load data in to the system?");
@@ -161,7 +157,7 @@ public class Menu {
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
         List<List<String>> data = new ArrayList<>();
-        if(result.get() == buttonTypeYes) {
+        if (result.get() == buttonTypeYes) {
 
             for (int i = 0; i < DriverList.allDrivers.size(); i++) {
                 data.add(Arrays.asList(String.valueOf(DriverList.allDrivers.get(i))));
@@ -177,8 +173,7 @@ public class Menu {
 
 
             }
-        }
-        else{
+        } else {
             for (int i = 0; i < DriverList.allDrivers.size(); i++) {
                 data.add(Arrays.asList(String.valueOf(DriverList.allDrivers.get(i))));
                 try {
@@ -199,32 +194,18 @@ public class Menu {
         fileMessage.setText("Data saved to text file.");
     }
 
-    /*public void navigateSaveData(ActionEvent actionEvent) throws Exception  {
-        Stage newStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("saveData.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
-        newStage.show();
-
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        previousStage.close();
-    }*/
-
 
     @FXML
     protected void onLoadButtonClick(ActionEvent actionEvent) throws Exception {
         //navigateLoadData(actionEvent);
         Load load = new Load();
         fileMessage.setText("Data Loaded in to the system");
-        }
     }
 
-    /*public void navigateLoadData(ActionEvent actionEvent) throws Exception  {
-        Stage newStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("loadData.fxml"));
-        newStage.setScene(new Scene(root,600,400 ));
-        newStage.show();
 
-        Stage previousStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        previousStage.close();
-    }*/
+    @FXML
+    protected void exitButtonClick(ActionEvent actionEvent) throws IOException{
+        Platform.exit();
+    }
+}
 

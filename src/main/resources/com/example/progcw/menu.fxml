@@ -49,7 +49,7 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="258.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #a8a8a8;" text="Exit" textFill="#615b96">
+      <Button alignment="CENTER" layoutX="258.0" layoutY="359.0" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #a8a8a8;" text="Exit" textFill="#615b96">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
