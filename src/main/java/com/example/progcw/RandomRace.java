@@ -26,7 +26,7 @@ public class RandomRace {
 
     public RandomRace() {
         Collections.shuffle(allDrivers);
-        ;
+
         for (int i = 0; i < allDrivers.size(); i++) {
             //if details loaded from text file to system, points will be in String, therefore need to convert first.
             Object elem = allDrivers.get(i).get(4);
@@ -41,7 +41,7 @@ public class RandomRace {
                     allDrivers.get(i).set(4, Integer.toString(newVal));
                 } else if (i == 2) {
                     int current = Integer.parseInt((String) allDrivers.get(i).get(4));
-                    int newVal = current + 7;
+                    int newVal = current + 5;
                     allDrivers.get(i).set(4, Integer.toString(newVal));
                 }
             } else {
@@ -55,17 +55,19 @@ public class RandomRace {
                     allDrivers.get(i).set(4, newVal);
                 } else if (i == 2) {
                     int current = (int) allDrivers.get(i).get(4);
-                    int newVal = current + 7;
+                    int newVal = current + 5;
                     allDrivers.get(i).set(4, newVal);
                 }
 
             }
         }
+
+        //creating a new list to hold the name and points only
         List<String> raceData = new ArrayList<>();
         for (int i = 0; i < DriverList.allDrivers.size(); i++) {
             raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(0)));
             raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(4)));
-
+            //writing the name and points of the drivers in to a text file
             try {
                 FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
 
@@ -73,13 +75,12 @@ public class RandomRace {
                     writer.write(String.join(",", line,"\n"));
                 }
                 raceData.clear();
-                //writer.write("\n");
                 writer.close();
             } catch (IOException e) {
                 System.out.println("File does not exist");
             }
         }
-        //setLocation();
+
 
     }
 
@@ -108,7 +109,7 @@ public class RandomRace {
         setDate();
     }
 
-
+    //creating a class in order to use when populating tables / observable lists
     public class RaceDrivers {
         private String name;
         private String points;
@@ -145,19 +146,27 @@ public class RandomRace {
         }
     }
 
-    public void setDate() {
+
+    //method to set a date for the race randomly
+    private void setDate() {
         if (!allDrivers.isEmpty()) {
             raceError.setText("");
-            LocalDate today = LocalDate.now();
-            LocalDate nextMonth = today.plusDays(30);
+            LocalDate today = LocalDate.now(); //today's date
+            LocalDate nextMonth = today.plusDays(30); //getting dates from today for the nest 30 days
+
+            //toEpoch since dates need to be used for calculation later on
             long minDay = today.toEpochDay();
             long maxDay = nextMonth.toEpochDay();
+
+            //randomly selecting a day from minDay(today) to maxDay(30 days from now)
             long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
             LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDate = randomDate.format(formatter);
             date.setText(formattedDate);
+
+            //writing date to teh text file
 
             try {
                 FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
@@ -173,7 +182,7 @@ public class RandomRace {
     }
 
 
-    public void setLocation() {
+    private void setLocation() {
         if (!allDrivers.isEmpty()) {
             String[] locations = {"Nyirad", "Holjes", "Montalegre", "Barcelona", "Riga", "Norway"};
             Random rand = new Random();
@@ -194,7 +203,8 @@ public class RandomRace {
 
     }
 
-    public void displayTable(List<ArrayList> allDrivers) {
+    private void displayTable(List<ArrayList> allDrivers) {
+        //populatig the observable list and then the table
 
         if(!DriverList.allDrivers.isEmpty()) {
             ObservableList<RaceDrivers> data = FXCollections.observableArrayList();
@@ -220,12 +230,13 @@ public class RandomRace {
     }
 
 }
+    //navigating user back to the main menu when back button clicked
     @FXML
-    protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
+    private void onGoBackButtonClick(ActionEvent actionEvent) throws IOException {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
+    private void navigateGoBack(ActionEvent actionEvent) throws IOException {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         newStage.setScene(new Scene(root, 600, 400));

@@ -110,7 +110,7 @@ public class Menu {
     protected void onRandomRaceButtonClick(ActionEvent actionEvent) throws Exception {
         //RandomRace randomRace = new RandomRace();
         navigateRandomRace(actionEvent);
-        List<List<String>> raceData = new ArrayList<>();
+        //List<List<String>> raceData = new ArrayList<>();
 
 
     }

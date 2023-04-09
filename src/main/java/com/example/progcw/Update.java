@@ -32,7 +32,7 @@ public class Update {
     @FXML
     private ChoiceBox updateElem;
 
-
+    //initializing items to choice box
     @FXML
     private void initialize(){
         updateElem.setItems(updateOption);
@@ -41,6 +41,7 @@ public class Update {
         updateDriverDetails();
     }
 
+    //to navigate back to menu when back button clicked
     @FXML
     private void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
@@ -56,10 +57,13 @@ public class Update {
         previousStage.close();
     }
 
+    //method to update driver details
     private void updateDriverDetails() throws IOException {
+        //getting the driver to be updated inner list to a seperate list
         ArrayList<ArrayList> toUpdate = new ArrayList();
         String updateE = (String) updateElem.getValue();
         String name = updateName.getText().toUpperCase();
+        //checking if name entered is in the sytsem
         for (int j = 0; j<DriverList.allDrivers.size();j++) {
             if (DriverList.allDrivers.isEmpty() || !(DriverList.allDrivers.get(j).contains(name))) {
                 message.setText("");
@@ -75,14 +79,7 @@ public class Update {
 
 
         if(!toUpdate.isEmpty()) {
-            /*if (updateE.equals("Name")) {
-                String newName = updateRecord.getText().toUpperCase();
-
-                toUpdate.get(0).set(0, newName);
-                DriverList.allDrivers.add(toUpdate.get(0));
-                messageError.setText("");
-                message.setText(name + "-driver's details updated.");*/
-
+            //updating according to user input
 
             if (updateE.equals("Team")) {
                 String newTeam = updateRecord.getText().toUpperCase();

@@ -28,6 +28,8 @@ public class Delete {
         deleteDriverDetails();
     }
 
+
+    //navigates back to menu when back button clicked
     @FXML
     private void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
@@ -44,8 +46,10 @@ public class Delete {
     }
 
     private void deleteDriverDetails() throws IOException {
+        //takes driver details to be deleted to a seperate list
         ArrayList<ArrayList> toDelete = new ArrayList<ArrayList>();
         String delName = deleteName.getText().toUpperCase();
+        //checks if name entered exists in the system
         for(int i = 0; i<DriverList.allDrivers.size();i++){
             if (DriverList.allDrivers.isEmpty() || !(DriverList.allDrivers.get(i).contains(delName))) {
                 message.setText("");
@@ -56,6 +60,7 @@ public class Delete {
                 DriverList.allDrivers.remove(DriverList.allDrivers.get(i));
             }
         }
+        //if existing in the system remove.
         if(!toDelete.isEmpty()){
                 if (toDelete.get(0).contains(delName)) {
                     toDelete.clear();

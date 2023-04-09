@@ -14,14 +14,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 public class RaceTable {
 
-    public RaceTable() throws IOException {
+    public RaceTable() {
 
     }
 
@@ -77,11 +81,12 @@ public class RaceTable {
         }
     }
 
-    public void displayRaceTable(){
+    private void displayRaceTable(){
         String filePath = "raceDrivers.txt";
         List<List<String>> allRaces = new ArrayList<>();
         List<String> eachRace = new ArrayList<>();
 
+        //reading the details of the races held from the text file
         try {
             File file = new File(filePath);
             Scanner readFile = new Scanner(file);
@@ -89,41 +94,37 @@ public class RaceTable {
                 String line = readFile.nextLine();
                 String[] details = line.split(",");
 
+
+                //grouping all the elements before the date as details of one race, and the element right after to teh next date as another detail of a race
+                //details.length - 1 = date
                 if (details.length>0 && details[details.length - 1].matches("\\d{2}-\\d{2}-\\d{4}")) {
                     List<String> formattedEachRace = new ArrayList<>();
                     for (int i = 0; i < eachRace.size(); i += 2) {
+                        //checks for all the names and points. stores name and points as name-points
+                        //below condition will be false when location is reached
                         if (i + 1 < eachRace.size()) {
                             formattedEachRace.add(eachRace.get(i) + "-" + eachRace.get(i + 1));
                         }
                         else{
+                            // location added
                             formattedEachRace.add(eachRace.get(i));
                         }
                     }
                     if(!formattedEachRace.isEmpty()){
+                        //date added
                         formattedEachRace.add(details[details.length-1]);
                         allRaces.add(formattedEachRace);
                     }
 
                     eachRace = new ArrayList<>();
                 } else {
+                    //getting details of each race from details[]
                     for (String element : details) {
                         eachRace.add(element);
                     }
                 }
             }
 
-            List<String> formattedEachRace = new ArrayList<>();
-            for (int i = 0; i < eachRace.size(); i += 2) {
-                if (i + 1 < eachRace.size()) {
-                    formattedEachRace.add(eachRace.get(i) + "-" + eachRace.get(i + 1));
-                }
-                else{
-                    formattedEachRace.add(eachRace.get(i));
-                }
-            }
-            if(!formattedEachRace.isEmpty()){
-                allRaces.add(formattedEachRace);
-            }
 
 
             readFile.close();
@@ -133,12 +134,14 @@ public class RaceTable {
         }
 
 
-
         List<List<String>> modifiedList = new ArrayList<>();
         for(List<String> innerList : allRaces){
-            String location = innerList.get(innerList.size() - 2);
-            String date = innerList.get(innerList.size() - 1);
+            //for each race in all races
+            String location = innerList.get(innerList.size() - 2); //one before last element
+            String date = innerList.get(innerList.size() - 1); //last element
+
             List<String> modifiedInnerList = new ArrayList<>();
+            //putting all the drivers and their points in to one single string, location seperately
             StringBuilder sb = new StringBuilder();
             for(int i = 0; i< innerList.size() - 2; i++){
                 sb.append(innerList.get(i)).append(" ");
@@ -146,38 +149,24 @@ public class RaceTable {
             modifiedInnerList.add(sb.toString().trim());
             modifiedInnerList.add(String.valueOf(location));
 
+            //converting the date to the date format
             try{
                 SimpleDateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy");
                 Date convertDate = originalFormat.parse(date);
-                modifiedInnerList.add(originalFormat.format(convertDate));
+                modifiedInnerList.add(originalFormat.format(convertDate)); //adding the date after location
             }
             catch (ParseException e){
                 System.out.println("Date could not be converted to date format");
             }
-            modifiedList.add(modifiedInnerList);
+            modifiedList.add(modifiedInnerList); //all driver names and points as one string, date and location seperately
         }
 
-        /*for(int k = 1; k< modifiedList.size();k++){
-            List<String> current = modifiedList.get(k);
-            String currentDate = current.get(current.size()-1);
-            int j = k - 1;
-            while(j >=0 && currentDate.compareTo(modifiedList.get(k).get(modifiedList.get(j).size()-1))<0){
-                modifiedList.set(j+1, modifiedList.get(j));
-                j--;
-
-        }
-        System.out.println("Sorted" + modifiedList);*/
 
         boolean sorted = false;
         while(!sorted){
             sorted = true;
             //loop to go trhough all elements in the nested list
             for(int i = 0; i< modifiedList.size()-1;i++){
-                //loop to iterate through all the elements in the inner list
-                //for(int j =0; j< modifiedList.get(i).size() -1; j++){
-                //checks for third element to consider it date
-                //if (j + 2 < modifiedList.get(i).size()  && i + 1 < modifiedList.size() ) {
-                //getting current date and next date
                 String currentDate = (String) modifiedList.get(i).get(2);
                 String nextDate = (String) modifiedList.get(i+1).get(2);
                 //sepearting the day, month and year to compare all three.
@@ -190,7 +179,11 @@ public class RaceTable {
                 int currentYear = Integer.parseInt(currentDateElements[2]);
                 int nextYear = Integer.parseInt(nextDateElements[2]);
                 if(currentYear>nextYear || (currentYear == nextYear && currentMonth > nextMonth) || (currentYear == nextYear && currentMonth == nextMonth && currentDay > nextDay)){
-                    Collections.swap(modifiedList, i, i+1);
+                    //swapping inner lists according to date
+                    List temp = modifiedList.get(i);
+                    modifiedList.set(i, modifiedList.get(i+1));
+                    modifiedList.set(i+1, temp);
+                    //Collections.swap(modifiedList, i, i+1);
                     sorted = false;
                 }
             }
@@ -198,6 +191,7 @@ public class RaceTable {
 
         }
 
+        //creating and populating observable lists / tables
         if(!modifiedList.isEmpty()){
             message.setText("");
             ObservableList<RaceDetails> data = FXCollections.observableArrayList();
@@ -210,7 +204,10 @@ public class RaceTable {
                 //(\\s): one or more white spaces
                 //(?=[A-Za-z]): white space before a letter
                 //this splits the string before a letter after a digit.
+                //this is to make sure that when full names are entered they are not split, but the whole name is considered.
 
+
+                //mentioning positions for first three players.
                 if(elem.length >= 3) {
                     elem[0] = "First: " + elem[0];
                     elem[1] = "Second: " + elem[1];
@@ -238,13 +235,13 @@ public class RaceTable {
     }
 
 
-
+    //navigating to menu by click of back button
     @FXML
-    protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
+    private void onGoBackButtonClick(ActionEvent actionEvent) throws IOException {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
+    private void navigateGoBack(ActionEvent actionEvent) throws IOException {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         newStage.setScene(new Scene(root, 600, 400));

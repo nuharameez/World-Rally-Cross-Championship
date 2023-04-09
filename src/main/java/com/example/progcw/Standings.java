@@ -23,7 +23,6 @@ import java.util.List;
 public class Standings {
     ArrayList<ArrayList> allDrivers = DriverList.allDrivers;
     public Standings() {
-        this.allDrivers = allDrivers;
     }
 
     @FXML
@@ -47,18 +46,20 @@ public class Standings {
 
 
 
+    //when the view table button is clicked, the allDrivers will be sorted and populated.
 
-
-    public void showStanding() throws IOException {
+    public void showStanding() {
         displayTable(DriverList.allDrivers);
     }
 
+    //navigtes user to the main menu when back button clicked.
+
     @FXML
-    protected void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
+    private void onGoBackButtonClick(ActionEvent actionEvent) throws Exception {
         navigateGoBack(actionEvent);
     }
 
-    public void navigateGoBack(ActionEvent actionEvent) throws Exception {
+    private void navigateGoBack(ActionEvent actionEvent) throws Exception {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         newStage.setScene(new Scene(root, 600, 400));
@@ -68,7 +69,9 @@ public class Standings {
         previousStage.close();
     }
 
-    public static void bubblesortingList(ArrayList<ArrayList> sortList){
+    //when this method is called, it will take a nested array list as parameters and sort it according to each of ite's elements 4th element
+
+    private static void bubblesortingList(ArrayList<ArrayList> sortList){
         int n = sortList.size();
         for (int i = 0; i<n; i++){
             for ( int j = 0; j< n - i - 1; j++){
@@ -83,6 +86,7 @@ public class Standings {
         }
     }
 
+    //creating a new class to populate an observable
     public class Driver{
         private String name;
         private String team;
@@ -139,8 +143,12 @@ public class Standings {
             return age;
         }
     }
-    public void displayTable(List<ArrayList> allDrivers){
+
+    //method to display the sorted details in a table
+    private void displayTable(List<ArrayList> allDrivers){
         bubblesortingList(DriverList.allDrivers);
+
+        //populating table by populating an observable list.
         ObservableList<Driver> data = FXCollections.observableArrayList();
         for (ArrayList driverInfo : allDrivers){
             String name = (String) driverInfo.get(0);
