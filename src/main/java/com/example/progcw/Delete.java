@@ -66,14 +66,14 @@ public class Delete {
                     toDelete.clear();
                     System.out.println(DriverList.allDrivers);
                     messageError.setText("");
-                    message.setText(delName + "- driver's records has been deleted.");
+                    message.setText("Driver details deleted successfully.");
                 }
 
 
             }
         else{
             message.setText("");
-            messageError.setText(delName + "- driver's records does not exist or has been removed from the system.");
+            messageError.setText("Driver does not exist in the system.");
         }
 
 

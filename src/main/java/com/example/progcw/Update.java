@@ -86,7 +86,7 @@ public class Update {
                 toUpdate.get(0).set(2, newTeam);
                 DriverList.allDrivers.add(toUpdate.get(0));
                 messageError.setText("");
-                message.setText(name + "-driver's details updated.");
+                message.setText("Driver's team updated successfully.");
 
 
             } else if (updateE.equals("Car")) {
@@ -94,7 +94,7 @@ public class Update {
                 toUpdate.get(0).set(3, newCar);
                 DriverList.allDrivers.add(toUpdate.get(0));
                 messageError.setText("");
-                message.setText(name + "-driver's details updated.");
+                message.setText("Driver's car updated successfully.");
 
 
             } else if (updateE.equals("Age")) {
@@ -103,7 +103,7 @@ public class Update {
                     toUpdate.get(0).set(1, newAge);
                     DriverList.allDrivers.add(toUpdate.get(0));
                     messageError.setText("");
-                    message.setText(name + "-driver's details updated.");
+                    message.setText("Driver's age updated successfully.");
                 } catch (NumberFormatException e) {
                     message.setText("");
                     messageError.setText("Invalid input!");
@@ -117,7 +117,7 @@ public class Update {
                     toUpdate.get(0).set(4, newPoints);
                     DriverList.allDrivers.add(toUpdate.get(0));
                     messageError.setText("");
-                    message.setText(name + "-driver's details updated.");
+                    message.setText("Driver's current points updated successfully.");
                 } catch (NumberFormatException e) {
                     message.setText("");
                     messageError.setText("Invalid input!");
