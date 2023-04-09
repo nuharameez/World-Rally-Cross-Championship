@@ -20,66 +20,13 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.example.progcw.DriverList.*;
+import static com.example.progcw.DriverList.allDrivers;
 
 public class RandomRace {
 
 
     public RandomRace() {
-        Collections.shuffle(allDrivers);
 
-        for (int i = 0; i < allDrivers.size(); i++) {
-            //if details loaded from text file to system, points will be in String, therefore need to convert first.
-            Object elem = allDrivers.get(i).get(4);
-            if (elem instanceof String) {
-                if (i == 0) {
-                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
-                    int newVal = current + 10;
-                    allDrivers.get(i).set(4, Integer.toString(newVal));
-                } else if (i == 1) {
-                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
-                    int newVal = current + 7;
-                    allDrivers.get(i).set(4, Integer.toString(newVal));
-                } else if (i == 2) {
-                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
-                    int newVal = current + 5;
-                    allDrivers.get(i).set(4, Integer.toString(newVal));
-                }
-            } else {
-                if (i == 0) {
-                    int current = (int) allDrivers.get(i).get(4);
-                    int newVal = current + 10;
-                    allDrivers.get(i).set(4, newVal);
-                } else if (i == 1) {
-                    int current = (int) allDrivers.get(i).get(4);
-                    int newVal = current + 7;
-                    allDrivers.get(i).set(4, newVal);
-                } else if (i == 2) {
-                    int current = (int) allDrivers.get(i).get(4);
-                    int newVal = current + 5;
-                    allDrivers.get(i).set(4, newVal);
-                }
-
-            }
-        }
-
-        //creating a new list to hold the name and points only
-        List<String> raceData = new ArrayList<>();
-        for (int i = 0; i < DriverList.allDrivers.size(); i++) {
-            raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(0)));
-            raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(4)));
-            //writing the name and points of the drivers in to a text file
-            try {
-                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
-
-                for (String line : raceData) {
-                    writer.write(String.join(",", line,"\n"));
-                }
-                raceData.clear();
-                writer.close();
-            } catch (IOException e) {
-                System.out.println("File does not exist");
-            }
-        }
 
 
     }
@@ -204,6 +151,61 @@ public class RandomRace {
     }
 
     private void displayTable(List<ArrayList> allDrivers) {
+        Collections.shuffle(allDrivers);
+
+        for (int i = 0; i < allDrivers.size(); i++) {
+            //if details loaded from text file to system, points will be in String, therefore need to convert first.
+            Object elem = allDrivers.get(i).get(4);
+            if (elem instanceof String) {
+                if (i == 0) {
+                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
+                    int newVal = current + 10;
+                    allDrivers.get(i).set(4, Integer.toString(newVal));
+                } else if (i == 1) {
+                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
+                    int newVal = current + 7;
+                    allDrivers.get(i).set(4, Integer.toString(newVal));
+                } else if (i == 2) {
+                    int current = Integer.parseInt((String) allDrivers.get(i).get(4));
+                    int newVal = current + 5;
+                    allDrivers.get(i).set(4, Integer.toString(newVal));
+                }
+            } else {
+                if (i == 0) {
+                    int current = (int) allDrivers.get(i).get(4);
+                    int newVal = current + 10;
+                    allDrivers.get(i).set(4, newVal);
+                } else if (i == 1) {
+                    int current = (int) allDrivers.get(i).get(4);
+                    int newVal = current + 7;
+                    allDrivers.get(i).set(4, newVal);
+                } else if (i == 2) {
+                    int current = (int) allDrivers.get(i).get(4);
+                    int newVal = current + 5;
+                    allDrivers.get(i).set(4, newVal);
+                }
+
+            }
+        }
+
+        //creating a new list to hold the name and points only
+        List<String> raceData = new ArrayList<>();
+        for (int i = 0; i < DriverList.allDrivers.size(); i++) {
+            raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(0)));
+            raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(4)));
+            //writing the name and points of the drivers in to a text file
+            try {
+                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
+
+                for (String line : raceData) {
+                    writer.write(String.join(",", line,"\n"));
+                }
+                raceData.clear();
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("File does not exist");
+            }
+        }
         //populatig the observable list and then the table
 
         if(!DriverList.allDrivers.isEmpty()) {
