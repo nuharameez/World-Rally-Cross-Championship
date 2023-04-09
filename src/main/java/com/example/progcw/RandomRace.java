@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -105,18 +107,52 @@ public class RandomRace {
             long minDay = today.toEpochDay();
             long maxDay = nextMonth.toEpochDay();
 
-            //randomly selecting a day from minDay(today) to maxDay(30 days from now)
-            long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
-            LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
+            List<String> existingDates = new ArrayList<>();
 
+            //checking the dates stored in the text file that has dates of all the races previously generated
+
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader("raceDates.txt"));
+                String line = reader.readLine();
+                while(line != null){
+                    existingDates.add(line.trim());
+                    line = reader.readLine();
+                }
+                reader.close();
+            }catch(IOException e){
+                System.out.println("File does not exist");
+            }
+
+            LocalDate randomDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String formattedDate = randomDate.format(formatter);
+            String formattedDate="";
+            while(existingDates.contains(randomDate.format(formatter))){
+                //randomly selecting a day from minDay(today) to maxDay(30 days from now)
+                long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
+                randomDate = LocalDate.ofEpochDay(randomDay);
+            }
+
+            //randomly selecting a day from minDay(today) to maxDay(30 days from now)
+            //long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
+            //LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
+
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            formattedDate = randomDate.format(formatter);
             date.setText(formattedDate);
 
             //writing date to teh text file
 
             try {
-                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
+                FileWriter writer = new FileWriter("detailsOfRace.txt", true); //true appends the details. does not over write.
+                writer.write(formattedDate + "\n");
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("File does not exist");
+            }
+
+            //saving only the date of race in a text file to ensure the date is not duplicated
+            try {
+                FileWriter writer = new FileWriter("raceDates.txt", true); //true appends the details. does not over write.
                 writer.write(formattedDate + "\n");
                 writer.close();
             } catch (IOException e) {
@@ -136,7 +172,7 @@ public class RandomRace {
             String randomLocation = locations[rand.nextInt(locations.length)];
             locationL.setText(randomLocation);
             try {
-                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
+                FileWriter writer = new FileWriter("detailsOfRace.txt", true); //true appends the details. does not over write.
                 writer.write(randomLocation + "\n");
                 writer.close();
             } catch (IOException e) {
@@ -195,7 +231,7 @@ public class RandomRace {
             raceData.add(String.valueOf(DriverList.allDrivers.get(i).get(4)));
             //writing the name and points of the drivers in to a text file
             try {
-                FileWriter writer = new FileWriter("raceDrivers.txt", true); //true appends the details. does not over write.
+                FileWriter writer = new FileWriter("detailsOfRace.txt", true); //true appends the details. does not over write.
 
                 for (String line : raceData) {
                     writer.write(String.join(",", line,"\n"));

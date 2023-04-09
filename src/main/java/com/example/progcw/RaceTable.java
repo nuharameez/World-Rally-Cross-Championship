@@ -82,7 +82,7 @@ public class RaceTable {
     }
 
     private void displayRaceTable(){
-        String filePath = "raceDrivers.txt";
+        String filePath = "detailsOfRace.txt";
         List<List<String>> allRaces = new ArrayList<>();
         List<String> eachRace = new ArrayList<>();
 

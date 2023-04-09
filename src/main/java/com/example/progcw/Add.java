@@ -28,19 +28,19 @@ public class Add {
 
 
     @FXML
-    private TextField addName;
+    protected TextField addName;
     @FXML
-    private TextField addAge;
+    protected TextField addAge;
     @FXML
-    private TextField addTeam;
+    protected TextField addTeam;
     @FXML
-    private TextField addCar;
+    protected TextField addCar;
     @FXML
-    private TextField addPoints;
+    protected TextField addPoints;
     @FXML
-    private Label errorMessage;
+    protected Label errorMessage;
     @FXML
-    private Label successMessage;
+    protected Label successMessage;
 
 
     public void addSave() {
