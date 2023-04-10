@@ -124,7 +124,7 @@ public class RandomRace {
             }
 
             LocalDate randomDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");    //converting to a common date format
             String formattedDate="";
             while(existingDates.contains(randomDate.format(formatter))){
                 //randomly selecting a day from minDay(today) to maxDay(30 days from now)
@@ -132,9 +132,7 @@ public class RandomRace {
                 randomDate = LocalDate.ofEpochDay(randomDay);
             }
 
-            //randomly selecting a day from minDay(today) to maxDay(30 days from now)
-            //long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
-            //LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
+
 
             //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             formattedDate = randomDate.format(formatter);

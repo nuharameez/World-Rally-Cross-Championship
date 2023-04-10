@@ -100,10 +100,16 @@ public class Update {
             } else if (updateE.equals("Age")) {
                 try {
                     int newAge = Integer.parseInt(updateRecord.getText());
-                    toUpdate.get(0).set(1, newAge);
-                    DriverList.allDrivers.add(toUpdate.get(0));
-                    messageError.setText("");
-                    message.setText("Driver's age updated successfully.");
+                    if(newAge<18 || newAge>90){
+                        messageError.setText("Please enter valid age");
+                        DriverList.allDrivers.add(toUpdate.get(0));
+                    }
+                    else {
+                        toUpdate.get(0).set(1, newAge);
+                        DriverList.allDrivers.add(toUpdate.get(0));
+                        messageError.setText("");
+                        message.setText("Driver's age updated successfully.");
+                    }
                 } catch (NumberFormatException e) {
                     message.setText("");
                     messageError.setText("Invalid input!");
@@ -114,10 +120,16 @@ public class Update {
             } else if (updateE.equals("Current Points")) {
                 try {
                     int newPoints = Integer.parseInt(updateRecord.getText());
-                    toUpdate.get(0).set(4, newPoints);
-                    DriverList.allDrivers.add(toUpdate.get(0));
-                    messageError.setText("");
-                    message.setText("Driver's current points updated successfully.");
+                    if(newPoints<0){
+                        messageError.setText("Please enter valid points");
+                        DriverList.allDrivers.add(toUpdate.get(0));
+                    }
+                    else {
+                        toUpdate.get(0).set(4, newPoints);
+                        DriverList.allDrivers.add(toUpdate.get(0));
+                        messageError.setText("");
+                        message.setText("Driver's current points updated successfully.");
+                    }
                 } catch (NumberFormatException e) {
                     message.setText("");
                     messageError.setText("Invalid input!");

@@ -28,19 +28,19 @@ public class Add {
 
 
     @FXML
-    protected TextField addName;
+    private TextField addName;
     @FXML
-    protected TextField addAge;
+    private TextField addAge;
     @FXML
-    protected TextField addTeam;
+    private TextField addTeam;
     @FXML
-    protected TextField addCar;
+    private TextField addCar;
     @FXML
-    protected TextField addPoints;
+    private TextField addPoints;
     @FXML
-    protected Label errorMessage;
+    private Label errorMessage;
     @FXML
-    protected Label successMessage;
+    private Label successMessage;
 
 
     public void addSave() {
@@ -87,7 +87,7 @@ public class Add {
 
 
     //method to add driver details
-    private void addDriverDetails() {
+    private void  addDriverDetails() {
         //reading driver details stored in text file to avoid duplicate drivers
         String filename = "SavedDriverDetails.txt";
         ArrayList<ArrayList<String>> driverDetails = new ArrayList<>();
@@ -98,6 +98,8 @@ public class Add {
             while ((line = br.readLine()) != null) {
                 String[] driver = line.split(",\\s*");
                 ArrayList<String> driverRecord = new ArrayList<>(Arrays.asList(driver));
+
+                //removing the [ and ] as they are taken as strings
                 driverRecord.set(0, driverRecord.get(0).replaceAll("^\\[|\\]$", ""));
                 driverRecord.set(4, driverRecord.get(4).replaceAll("^\\[|\\]$", ""));
                 driverRecord.set(1, String.valueOf(Integer.parseInt(driverRecord.get(1))));
@@ -109,6 +111,9 @@ public class Add {
         } catch (IOException e) {
             System.out.println("No file");
         }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("No details stored in the file");
+        }
 
 
         while (true) {
@@ -117,15 +122,23 @@ public class Add {
             String name = addName.getText().toUpperCase();
             drivers.add(name);
 
-            //checking if age entered ins an integer
+            //checking if age entered is an integer
             try {
                 int age = Integer.parseInt(addAge.getText());
-                drivers.add(age);
+                if(age<18 || age>90){
+                    successMessage.setText("");
+                    errorMessage.setText("Please enter a valid age");
+                    drivers.clear();
+                    break;
+                }
+                else {
+                    drivers.add(age);
+                }
 
 
             } catch (NumberFormatException e) {
                 successMessage.setText("");
-                errorMessage.setText("Invalid Input! Check age and points.");
+                errorMessage.setText("Invalid Input! Check age.");
                 drivers.clear();
                 break;
             }
@@ -140,11 +153,19 @@ public class Add {
 
             try {
                 int points = Integer.parseInt(addPoints.getText());
-                drivers.add(points);
+                if(points<0){
+                    successMessage.setText("");
+                    errorMessage.setText("Please enter valid points");
+                    drivers.clear();
+                    break;
+                }
+                else {
+                    drivers.add(points);
+                }
 
             } catch (NumberFormatException e) {
                 successMessage.setText("");
-                errorMessage.setText("Invalid Input! Check age and points.");
+                errorMessage.setText("Invalid Input! Check points.");
                 drivers.clear();
                 break;
             }
@@ -174,18 +195,15 @@ public class Add {
                 errorMessage.setText("");
                 DriverList.allDrivers.add(drivers);
                 successMessage.setText("Driver details added successfully!");
+
             }
 
-            /*System.out.println(AddList.drivers);*/
             System.out.println(DriverList.allDrivers);
+
+
 
 
             break;
         }
     }
 }
-
-
-
-
-

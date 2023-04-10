@@ -2,34 +2,47 @@
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.awt.*;
 
-class AddTest {
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class AddTest {
+
 
     @Test
-    void addSave() {
+    public void testAddDriverDetails() {
         Add add = new Add();
-
-        TextField name1 = new TextField("Anna");
-        TextField age1 = new TextField("20");
-        TextField team1 = new TextField("Legends");
-        TextField car1 = new TextField("Honda");
-        TextField points1 = new TextField("50");
-        Label eMessage = new Label("");
-        Label sMessage = new Label("");
-
-        add.addName = name1;
-        add.addAge = age1;
-        add.addTeam = team1;
-        add.addCar = car1;
-        add.addPoints = points1;
-        add.errorMessage = eMessage;
-        add.successMessage = sMessage;
+        TextField addName = new TextField("Test Driver");
+        TextField addAge = new TextField("25");
+        TextField addTeam = new TextField("Test Team");
+        TextField addCar = new TextField("Test Car");
+        TextField addPoints = new TextField("10");
+        Label errorMessage = new Label();
+        Label successMessage = new Label();
+        add.addName = addName;
+        add.addAge = addAge;
+        add.addTeam = addTeam;
+        add.addCar = addCar;
+        add.addPoints = addPoints;
+        add.errorMessage = errorMessage;
+        add.successMessage = successMessage;
 
         add.addDriverDetails();
-
-        assertEquals("Driver details added successfully!", sMessage.getText());
+        assertEquals(1, DriverList.allDrivers.size());
+        assertEquals("Test Driver", DriverList.allDrivers.get(0).get(0));
+        assertEquals(25, DriverList.allDrivers.get(0).get(1));
+        assertEquals("Test Team", DriverList.allDrivers.get(0).get(2));
+        assertEquals("Test Car", DriverList.allDrivers.get(0).get(3));
+        assertEquals(10, DriverList.allDrivers.get(0).get(4));
     }
+    @BeforeClass
+    public static void setUpClass() {
+        Toolkit.getDefaultToolkit();
+    }
+
+
 }*/
